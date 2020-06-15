@@ -86,34 +86,7 @@ for train, validation in skf.split(X,Y):
     k_accuracy = '%.4f'%(model.evaluate(X[validation], Y[validation])[1])
     accuracy.append(k_accuracy)
 
-'''
-    fig, ax = plot_confusion_matrix(conf_mat=confmat,
-                                    figsize=(10,10),
-                                    colorbar=True,
-                                    class_names=categories)
-    plt.show()
-'''
-#print(confmat)
-#print(classification_report(Y_test.argmax(axis=1), test_predictions.argmax(axis=1),
-#                                target_names=["Eunbi","Minju", "Wonyoung", "Sakura", "Yuri", "Yena", "Chaewon", "Chaeyeon", "Nako", "Hitomi", "Yujin", "Hyewon"]))
-'''
-    f = open(result_path + 'base_'+str(kfold_num)+'fold.txt', 'a')
-    f.write('------------------' + str(foldnum+1) + 'fold result------------------\n')
-    f.write(str(confmat) + '\n')
-    f.write(str(classification_report(Y_test.argmax(axis=1), test_predictions.argmax(axis=1),
-                                      target_names=["bacteria", "healthy", "lateblight", "targetspot",
-                                                    "yellowleafcurl"]) + '\n'))
-                 
-                                           
-for i in range(len(categories)):
-    axis_sum = 0
-    for j in range(len(categories)):
-        axis_sum = axis_sum + confmat[i, j]
-    answer = confmat[i, i] / axis_sum
-    answer = str(answer)
-    print(categories[i] + " accuracy : ", end='')
-    print(answer)
-'''
+
 print('\nK-fold cross validation Accuracy: {}'.format(accuracy))
 
 model_json = model.to_json()
